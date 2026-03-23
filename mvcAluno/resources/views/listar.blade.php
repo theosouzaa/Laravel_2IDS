@@ -7,7 +7,7 @@
 </head>
     <body>
         <h1>Relatório de Alunos</h1>
-        <table border="1">
+        <table border="5">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -23,7 +23,9 @@
                         <td>{{ $aluno->id }}</td>
                         <td>{{ $aluno->nome }}</td>
                         <td>{{ $aluno->email }}</td>
-                        <td>Faremos na prómima aula</td>
+                        <td>
+                            <a href="{{route('aluno.atualizar', $aluno->id)}}">Atualizar</a>
+                        </td>
                         <td>Faremos na prómima aula</td>
                     </tr>
                 @empty

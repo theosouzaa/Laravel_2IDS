@@ -16,3 +16,10 @@ Route::get('/aluno/cadastrar', function(){
 // POST - enviar os dados para cadastrar usuários
 Route::post('/aluno/slavar', [Alunocontroller::class, 'add'])
 ->name('aluno.salvar');
+
+// Tela de Atualizar
+Route::get('/aluno/{id}/atualizar', [AlunoController::class, 'atualizar'])
+->name('aluno.atualizar');
+
+Route::put('/aluno/{id}/update', [AlunoController::class, 'update'])
+->name('aluno.update');
