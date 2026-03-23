@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\Produto;
+
+use Illuminate\Http\Request;
+
+class ProdutoController extends Controller
+{
+    public function listar(){
+        $query = Produto::query();
+        $Produtos = $query->get();
+        return view('listar', compact('Produtos'));
+    }
+
+    public function add(Request $request){
+        $request->validade([
+            'nome' => 'required|string|max:255',
+            'quantidade' => 'required|int',
+            'preco' => 'required|duble',
+        ]);
+        
+        Produto::create([
+            'nome' => $request->nome,
+            'quantidade' => $request->quantidade,
+            'preco' => $request->preco,
+        ]);
+
+        return redirect()->back()->with('sucsess', 'Produto Cadastrado com sucesso!');
+    }
+
+    public function atualizar($id){
+        $produto = Produto::findOrFail($id);  // Buscar o pelo ID
+        return view('atualizar', compact('produto'));
+    }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'quantidade' => 'required|int',
+            'preco' => 'required|duble',
+        ]);
+
+        $produto = Produto::findOrfail($id); // Busca o produto para ser atualizado
+
+        $produto->nome = $request->nome; // Atualizando o campo nome
+        $produto->quantidade = $request->quantidade; //atualizando o campo quantidade
+        $produto->preco = $request->preco; //atualizando o campo preco
+
+        $produto->save(); // Salvando no banco de dados(fazendo update)
+        return redirect()->back()->with('success', 'Produto atualizado com sucesso');
+    }
+    
+}
