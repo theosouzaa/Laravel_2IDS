@@ -25,7 +25,9 @@
                         <td>{{ $produto->nome }}</td>
                         <td>{{ $produto->quantidade }}</td>
                         <td>{{ $produto->preco }}</td>
-                        <td>Faremos na prómima aula</td>
+                        <td>
+                            <a href="{{route('produto.atualizar', $produto->id)}}">Atualizar</a>
+                        </td>
                         <td>Faremos na prómima aula</td>
                 </tr>
                 @empty

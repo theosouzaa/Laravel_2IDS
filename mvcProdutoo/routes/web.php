@@ -14,7 +14,7 @@ Route::get('/produto/cadastrar', function(){
 })->name('produto.cadastro');
 
 // POST - enviar os dados para cadastrar usuários
-Route::post('/produto/slavar', [ProdutoController::class, 'add'])
+Route::post('/produto/salvar', [ProdutoController::class, 'add'])
 ->name('produto.salvar');
 
 // Tela de Atualizar

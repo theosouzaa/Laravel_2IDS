@@ -12,8 +12,27 @@
             <p style="color:green">{{ session('succes')}}</p>
         @endif
 
-        <form action="{{route('produto.update', $produto->id)}}" method="POST"></form>
-        @csrf
-        @method('PUT')
+        <form action="{{route('produto.update', $produto->id)}}" method="POST">
+            @csrf
+            @method('PUT')
+
+            <input type="text" name="nome" value="{{ old('nome', $produto->nome) }}" required>
+
+            <input type="number" name="quantidade" value="{{ old('quantidade', $produto->quantidade) }}" required>
+            
+            <input type="text" name="preco" value="{{ old('preco', $produto->preco) }}" required>
+            
+            <button type="submit">Atualizar</button>
+        </form>
+
+        @if($errors->any())
+            <div style="color: red">
+                <ul>
+                    @foreach ($errors->all() as $erro)
+                        <li>{{ $erro }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </body>
 </html>

@@ -14,10 +14,10 @@ class ProdutoController extends Controller
     }
 
     public function add(Request $request){
-        $request->validade([
+        $request->validate([
             'nome' => 'required|string|max:255',
             'quantidade' => 'required|int',
-            'preco' => 'required|duble',
+            'preco' => 'required|numeric',
         ]);
         
         Produto::create([
@@ -38,7 +38,7 @@ class ProdutoController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'quantidade' => 'required|int',
-            'preco' => 'required|duble',
+            'preco' => 'required|numeric',
         ]);
 
         $produto = Produto::findOrfail($id); // Busca o produto para ser atualizado
