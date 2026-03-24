@@ -26,7 +26,7 @@ class ProdutoController extends Controller
             'preco' => $request->preco,
         ]);
 
-        return redirect()->back()->with('sucsess', 'Produto Cadastrado com sucesso!');
+        return redirect()->back()->with('success', 'Produto Cadastrado com sucesso!');
     }
 
     public function atualizar($id){
