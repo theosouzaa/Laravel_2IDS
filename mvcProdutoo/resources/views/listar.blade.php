@@ -29,7 +29,8 @@
                             <a href="{{route('produto.atualizar', $produto->id)}}">Atualizar</a>
                         </td>
                         <td>
-                            <form action="{{ route('produto.deletar', $produto->id)}}">
+                            <form action="{{ route('produto.deletar', $produto->id)}}" method="POST"
+                                onsubmit="return confirm('Tem certeza que deseja deletar este produto?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">Deletar</button>

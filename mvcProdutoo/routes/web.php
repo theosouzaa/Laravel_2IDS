@@ -24,5 +24,5 @@ Route::get('/produto/{id}/atualizar', [ProdutoController::class, 'atualizar'])
 Route::put('/produto/{id}/update', [ProdutoController::class, 'update'])
 ->name('produto.update');
 
-Route::delete('/produto/{id}/deletar', [ProdutoController::class, 'deletar'])
+Route::delete('/produto/{id}', [ProdutoController::class, 'deletar'])
 ->name('produto.deletar');
