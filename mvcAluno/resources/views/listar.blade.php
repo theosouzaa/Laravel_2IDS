@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +7,14 @@
 </head>
     <body>
         <h1>Relatório de Alunos</h1>
-        <table border="5">
+        <table border="1">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>NOME</th>
                     <th>EMAIL</th>
-                    <th>ATUALIZAR</th>
-                    <th>DELETAR</th>
+                    <th>Atualizar</th>
+                    <th>Deletar</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,11 +26,18 @@
                         <td>
                             <a href="{{route('aluno.atualizar', $aluno->id)}}">Atualizar</a>
                         </td>
-                        <td>Faremos na prómima aula</td>
+                        <td>
+                            <form action="{{ route('aluno.deletar', $aluno->id)}}" method="POST"
+                                onsubmit="return confirm('Deseja realmente excluir');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Excluir</button>
+                            </form>
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colsoan="3">Nenhum Aluno encontrado</td>
+                        <td colspan="3"> Nenhum Aluno encontrado</td>
                     </tr>
                 @endforelse
             </tbody>
