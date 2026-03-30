@@ -28,7 +28,13 @@
                         <td>
                             <a href="{{route('produto.atualizar', $produto->id)}}">Atualizar</a>
                         </td>
-                        <td>Faremos na prómima aula</td>
+                        <td>
+                            <form action="{{ route('produto.deletar', $produto->id)}}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Deletar</button>
+                            </form>
+                        </td>
                 </tr>
                 @empty
                     <tr>

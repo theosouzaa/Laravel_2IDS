@@ -51,4 +51,9 @@ class ProdutoController extends Controller
         return redirect()->back()->with('success', 'Produto atualizado com sucesso');
     }
     
+    public function deletar($id){
+        $produto = Produto::findOrFail($id); // Buscar o produto pelo ID
+        $produto->delete(); // Deletar o produto do banco de dados
+        return redirect()->route('produto.listar')->with('success', 'Produto deletado com sucesso!');
+    }
 }
