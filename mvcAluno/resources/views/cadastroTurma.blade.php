@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Usuários</title>
+    <title>Cadastro Turma</title>
 </head>
     <body>
-        <h1>Cadastro Usuários</h1>
+        <h1>Cadastro Turma</h1>
         @if(session('success'))
             <p style="color:green">{{ session('success') }}</p>
         @endif
 
-        <form action="{{route('aluno.salvar')}}" method="POST">
+        <form action="{{route('turma.salvar')}}" method="POST">
             @csrf
-            <label for="nome">Nome: </label>
-            <input type="text" name="nome" id="nome" placeholder="Nome:" require value="{{ old('nome') }}">
+            <label for="numSala">Nº Sala: </label>
+            <input type="number" name="numSala" id="numSala" placeholder="Nº Sala..." require value="{{ old('numSala') }}">
             <br><br>
-
-            <label for="email">Email: </label>
-            <input type="email" name="email" id="email" placeholder="seu.email@gmail.com" required value="{{ old('email')}}">
-            <br><br>
-
-            <label for="turma_id">ID da turma: </label>
-            <input type="number" name="turma_id" id="turma_id" placeholder="ID da turma:" required value="{{ old('turma_id')}}">
+            <label for="serie">Série: </label>
+            <input type="text" name="serie" id="serie" placeholder="Série..." required value="{{ old('serie') }}">
 
             <input type="submit" value="Cadastrar">
         </form>

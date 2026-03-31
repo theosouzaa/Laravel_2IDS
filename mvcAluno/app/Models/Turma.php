@@ -8,7 +8,7 @@ class Turma extends Model
 {
     protected $fillable = [
         'numSala',
-        'turma'
+        'serie'
     ];
 
     public function aluno(){
