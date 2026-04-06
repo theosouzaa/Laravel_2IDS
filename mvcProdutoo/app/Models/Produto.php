@@ -8,6 +8,11 @@ class Produto extends Model
     protected $fillable = [
         'nome',
         'quantidade',
-        'preco'
+        'preco',
+        'setor',
     ];
+
+    // public function setores(){
+    //     return
+    // }
 }

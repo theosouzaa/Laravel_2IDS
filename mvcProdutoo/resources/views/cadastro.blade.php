@@ -26,6 +26,14 @@
             <input type="number" name="preco" id="preco" placeholder="Preco" step="1.50" value="{{ old('preco') }}">
             <br><br>
 
+            <label>Setor:</label>
+            <select name="produto_id" id="produto_id">
+                @foreach ($produtos as $produto)
+                    <option value="{{$produto->id}}">{{$produto->setor}}</option>
+                @endforeach
+            </select>
+            <br><br>
+
             <input type="submit" value="cadastrar">
         </form>
 

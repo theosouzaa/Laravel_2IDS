@@ -25,6 +25,7 @@
                         <td>{{ $produto->nome }}</td>
                         <td>{{ $produto->quantidade }}</td>
                         <td>{{ $produto->preco }}</td>
+                        {{-- <td>{{$poduto->setor}}</td> --}}
                         <td>
                             <a href="{{route('produto.atualizar', $produto->id)}}">Atualizar</a>
                         </td>

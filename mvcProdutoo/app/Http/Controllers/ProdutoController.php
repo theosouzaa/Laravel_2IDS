@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Produto;
+use App\Models\Setores;
 
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class ProdutoController extends Controller
     public function add(Request $request){
         $request->validate([
             'nome' => 'required|string|max:255',
-            'quantidade' => 'required|int',
+            'quantidade' => 'required|integer',
             'preco' => 'required|numeric',
         ]);
         
@@ -27,6 +28,11 @@ class ProdutoController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Produto Cadastrado com sucesso!');
+    }
+
+    public function cadastro(){
+        $produtos = Setores::get();
+        return view('cadastro', compact('produtos'));
     }
 
     public function atualizar($id){
@@ -41,7 +47,7 @@ class ProdutoController extends Controller
             'preco' => 'required|numeric',
         ]);
 
-        $produto = Produto::findOrfail($id); // Busca o produto para ser atualizado
+        $produto = Produto::findOrFail($id); // Busca o produto para ser atualizado
 
         $produto->nome = $request->nome; // Atualizando o campo nome
         $produto->quantidade = $request->quantidade; //atualizando o campo quantidade
