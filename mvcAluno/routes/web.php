@@ -10,9 +10,12 @@ Route::get('/', function () {
 
 Route::get('/aluno/listar', [AlunoController::class, 'listar']) -> name('aluno.listar');
 
-Route::get('/aluno/cadastrar', function(){
-    return view('cadastro');
-})->name('aluno.cadastro');
+// Route::get('/aluno/cadastrar', function(){
+//     return view('cadastro');
+// })->name('aluno.cadastro');
+
+Route::get('/aluno/cadastrar',[AlunoController::class, 'cadastro']
+)->name('aluno.cadastro');
 
 // POST - enviar os dados para cadastrar usuários
 Route::post('/aluno/slavar', [Alunocontroller::class, 'add'])
@@ -35,3 +38,4 @@ Route::get('/turma/cadastrar', function(){
 
 Route::post('/turma/slavar', [TurmaController::class, 'add'])
 ->name('turma.salvar');
+

@@ -21,8 +21,16 @@
             <input type="email" name="email" id="email" placeholder="seu.email@gmail.com" required value="{{ old('email')}}">
             <br><br>
 
-            <label for="turma_id">ID da turma: </label>
+            {{-- <label for="turma_id">ID da turma: </label>
             <input type="number" name="turma_id" id="turma_id" placeholder="ID da turma:" required value="{{ old('turma_id')}}">
+            <br><br> --}}
+
+            <label>ID da turma:</label>
+            <select name="turma_id" id="turma_id">
+                @foreach ($turmas as $turma)
+                    <option value="{{$turma->id}}">{{$turma->serie}}</option>
+                @endforeach
+            </select>
 
             <input type="submit" value="Cadastrar">
         </form>
