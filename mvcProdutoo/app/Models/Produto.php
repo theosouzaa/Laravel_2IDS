@@ -9,10 +9,14 @@ class Produto extends Model
         'nome',
         'quantidade',
         'preco',
-        'setor',
+        'setor_id',
     ];
 
-    // public function setores(){
-    //     return
-    // }
+    public function setor(){
+        return $this->belongsTo(Setores::class);
+    }
+
+    public function detalhe(){
+        return $this->hasMany(detalheProduto::class);
+    }
 }

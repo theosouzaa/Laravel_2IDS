@@ -14,6 +14,7 @@
                     <th>NOME</th>
                     <th>QUANTIDADE</th>
                     <th>PREÇO</th>
+                    <th>SETOR</th>
                     <th>ATUALIZAR</th>
                     <th>DELETAR</th>
                 </tr>
@@ -25,7 +26,7 @@
                         <td>{{ $produto->nome }}</td>
                         <td>{{ $produto->quantidade }}</td>
                         <td>{{ $produto->preco }}</td>
-                        {{-- <td>{{$poduto->setor}}</td> --}}
+                        <td>{{ $produto->setor?->id }}</td>
                         <td>
                             <a href="{{route('produto.atualizar', $produto->id)}}">Atualizar</a>
                         </td>
@@ -41,6 +42,31 @@
                 @empty
                     <tr>
                         <td colsoan="3">Nenhum Produto encontrado</td>
+                    </tr>
+                @endforelse
+            </tbody>
+
+            <br>
+
+            <table border="1">
+            <h1>Setores</h1>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOME SETOR</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <tbody>
+                @forelse($Produtos as $produto)
+                    <tr>
+                        <td>{{ $produto->setor->id }}</td>
+                        <td>{{ $produto->setor->nome }}</td>
+                </tr>
+                @empty
+                    <tr>
+                        <td colsoan="3">Nenhum Setor encontrado</td>
                     </tr>
                 @endforelse
             </tbody>

@@ -14,8 +14,8 @@
         <form action="{{route('setor.salvar')}}" method="POST">
             @csrf
             <label for="nome_setor">setor: </label>
-            <input type="text" placeholder="setor">
-            <input type="number" name="numCorredor" id="corredor" placeholder="Nº corredor" require value="{{ old('num_corredor') }}">
+            <input type="text" name="nome" placeholder="setor">
+            <input type="number" name="num_corredor" id="corredor" placeholder="Nº corredor" require value="{{ old('num_corredor') }}">
             <br><br>
 
             <input type="submit" value="Cadastrar">

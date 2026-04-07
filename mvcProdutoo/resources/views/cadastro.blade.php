@@ -23,13 +23,13 @@
             <br><br>
 
             <label for="preco">Preço: </label>
-            <input type="number" name="preco" id="preco" placeholder="Preco" step="1.50" value="{{ old('preco') }}">
+            <input type="number" name="preco" id="preco" placeholder="Preco" min="0" value="{{ old('preco') }}">
             <br><br>
 
             <label>Setor:</label>
-            <select name="produto_id" id="produto_id">
-                @foreach ($produtos as $produto)
-                    <option value="{{$produto->id}}">{{$produto->setor}}</option>
+            <select name="setor_id" id="setor_id">
+                @foreach ($setores as $setor)
+                    <option value="{{ $setor->id }}">{{ $setor->nome }}</option>
                 @endforeach
             </select>
             <br><br>

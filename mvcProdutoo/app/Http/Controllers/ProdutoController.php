@@ -25,14 +25,15 @@ class ProdutoController extends Controller
             'nome' => $request->nome,
             'quantidade' => $request->quantidade,
             'preco' => $request->preco,
+            'setor_id' => $request->setor_id
         ]);
 
         return redirect()->back()->with('success', 'Produto Cadastrado com sucesso!');
     }
 
     public function cadastro(){
-        $produtos = Setores::get();
-        return view('cadastro', compact('produtos'));
+        $setores = Setores::get();
+        return view('cadastro', compact('setores'));
     }
 
     public function atualizar($id){
