@@ -34,10 +34,6 @@ class LivroController extends Controller
             'numPaginas' => $request->numPaginas,
             'dataPublicacao' => $request->dataPublicacao,
             'editora' => $request->editora,
-            'custo' => $request->custo,
-            'preco' => $request->preco,
-            'imposto' => $request->imposto,
-            'editora_id' => $request->editora_id
         ]);
 
         return redirect()->back()->with('success', 'Livro Cadastrado com sucesso!');
