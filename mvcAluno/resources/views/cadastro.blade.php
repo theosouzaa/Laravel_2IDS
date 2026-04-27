@@ -14,7 +14,7 @@
         <form action="{{route('aluno.salvar')}}" method="POST">
             @csrf
             <label for="nome">Nome: </label>
-            <input type="text" name="nome" id="nome" placeholder="Nome:" require value="{{ old('nome') }}">
+            <input type="text" name="nome" id="nome" placeholder="Nome" require value="{{ old('nome') }}">
             <br><br>
 
             <label for="email">Email: </label>
@@ -31,6 +31,25 @@
                     <option value="{{$turma->id}}">{{$turma->serie}}</option>
                 @endforeach
             </select>
+            <br><br>
+
+            <h3>Informações pessoais</h3>
+
+            <label for="endereco">Endereço: </label>
+            <input type="text" name="endereco" id="endereco" placeholder="endereço" required value="{{ old('email')}}">
+            <br><br>
+
+            <label for="telefone">Telefone: </label>
+            <input type="tel" name="telefone" id="telefone" placeholder="telefone" required value="{{ old('email')}}">
+            <br><br>
+
+            <label for="idade">Idade: </label>
+            <input type="number" name="idade" id="idade" placeholder="idade" required value="{{ old('email')}}">
+            <br><br>
+
+            <label for="dataNascimento">Data Nascimento: </label>
+            <input type="date" name="" id="dataNascimento" required value="{{ old('email')}}">
+            <br><br>
 
             <input type="submit" value="Cadastrar">
         </form>
