@@ -11,7 +11,11 @@ CREATE TABLE departamento(
     updated_at TIMESTAMP NULL
 );
 
+ALTER TABLE departamento
+ADD COLUMN sigla VARCHAR(10);
+
 SELECT * FROM departamento;
+
 
 CREATE TABLE funcionarios(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,6 +28,8 @@ CREATE TABLE funcionarios(
     created_at TIMESTAMP NULL,
     updated_at TIMESTAMP NULL
 );
+
+SELECT * FROM funcionarios;
 
 ALTER TABLE funcionarios
 ADD COLUMN departamento_id INT NULL,
