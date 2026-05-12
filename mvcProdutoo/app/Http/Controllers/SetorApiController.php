@@ -17,14 +17,15 @@ class SetorApiController extends Controller
         $request->validate([
         'nome' => 'required|string|max:255',
         'num_corredor' => 'required|integer',
+        // para poder ser nulo ou existir na tabela setores
     ]);
         
-    Setores::create([
+    $setor = Setores::create([
         'nome' => $request->nome,
         'num_corredor' => $request->num_corredor,
     ]);
 
-        return responce()->json([
+        return response()->json([
             'message' => 'Setor Criado',
             'setor' => $setor
         ], 200);

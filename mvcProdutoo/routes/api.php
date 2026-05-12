@@ -10,3 +10,4 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('setores',[SetorApiController::class, 'listarApi']);
+Route::post('setor/add',[SetorApiController::class, 'addApi']);
