@@ -9,5 +9,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
+// Rotas API
 Route::get('setores',[SetorApiController::class, 'listarApi']);
 Route::post('setor/add',[SetorApiController::class, 'addApi']);
+Route::put('setor/atualizar/{id}',[SetorApiController::class, 'updateApi']);
+Route::put('setor/deletar/{id}',[SetorApiController::class, 'deletarApi']);
