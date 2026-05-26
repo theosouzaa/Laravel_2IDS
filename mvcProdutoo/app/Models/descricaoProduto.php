@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+
 class detalheProduto extends Model
 {
     protected $fillable = [
@@ -11,7 +12,8 @@ class detalheProduto extends Model
         'peso',
     ];
 
-    public function detalhe(){
+    public function detalhe()
+    {
         return $this->belongsTo(Produto::class);
     }
 }

@@ -10,7 +10,7 @@ Route::get('/user', function (Request $request) {
 
 
 // Rotas API
-Route::get('setores',[SetorApiController::class, 'listarApi']);
-Route::post('setor/add',[SetorApiController::class, 'addApi']);
-Route::put('setor/atualizar/{id}',[SetorApiController::class, 'updateApi']);
-Route::put('setor/deletar/{id}',[SetorApiController::class, 'deletarApi']);
+Route::get('setores', [SetorApiController::class, 'listarApi']);
+Route::post('setor/add', [SetorApiController::class, 'addApi']);
+Route::put('setor/atualizar/{id}', [SetorApiController::class, 'updateApi']);
+Route::put('setor/deletar/{id}', [SetorApiController::class, 'deletarApi']);

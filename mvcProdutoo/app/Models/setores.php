@@ -11,7 +11,8 @@ class Setores extends Model
         'num_corredor',
     ];
 
-    public function produtos(){
+    public function produtos()
+    {
         return $this->hasMany(Produto::class);
     }
 }

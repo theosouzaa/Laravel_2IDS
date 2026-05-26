@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Produto;
 use App\Models\Setores;
 use GuzzleHttp\Psr7\Response;
@@ -8,36 +9,38 @@ use Illuminate\Http\Request;
 
 class SetorApiController extends Controller
 {
-    public function listarApi(){
+    public function listarApi()
+    {
         $setores = Setores::all();
         return response()->json($setores);
     }
 
-    public function addApi(Request $request){
-        try{
+    public function addApi(Request $request)
+    {
+        try {
             $request->validate([
-            'nome' => 'required|string|max:255',
-            'num_corredor' => 'required|integer',
-            // para poder ser nulo ou existir na tabela setores
-        ]);
-            
-        $setor = Setores::create([
-            'nome' => $request->nome,
-            'num_corredor' => $request->num_corredor,
-        ]);
+                'nome' => 'required|string|max:255',
+                'num_corredor' => 'required|integer',
+                // para poder ser nulo ou existir na tabela setores
+            ]);
+
+            $setor = Setores::create([
+                'nome' => $request->nome,
+                'num_corredor' => $request->num_corredor,
+            ]);
 
             return response()->json([
                 'success' => true,
                 'message' => 'Setor Criado',
                 'setor' => $setor
             ], 201);
-        } catch(\Illuminate\Validation\ValidationException $e){
+        } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Erro de validação',
                 'erros' => $e->errors()
             ], 422);
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => "Erro interno do servidor",
@@ -46,26 +49,47 @@ class SetorApiController extends Controller
         }
     }
 
-    public function updateApi(Request $request, $id){
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'num_corredor' => 'required|int',
-        ]);
+    public function updateApi(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'nome' => 'required|string|max:255',
+                'num_corredor' => 'required|int',
+            ]);
 
-        $setor = Setores::findOrFail($id); // Busca o produto para ser atualizado
+            $setor = Setores::findOrFail($id); // Busca o produto para ser atualizado
 
-        $setor->nome = $request->nome; // Atualizando o campo nome
-        $setor->num_corredor = $request->num_corredor;
+            $setor->nome = $request->nome; // Atualizando o campo nome
+            $setor->num_corredor = $request->num_corredor;
 
-        $setor->save(); // Salvando no banco de dados(fazendo update)
+            $setor->save(); // Salvando no banco de dados(fazendo update)
 
-        return response()->json([
-            'message' => "Setor Atualizado!",
-            'setor' => $setor
-        ], 200);
+            return response()->json([
+                'message' => "Setor Atualizado!",
+                'setor' => $setor
+            ], 200);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Erro na validação',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Setor não encontrado'
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => "Erro interno do servidor",
+                'errors' => $e->getMessage()
+            ], 500);
+        }
     }
 
-    public function deletarApi($id){
+    public function deletarApi($id)
+    {
         $setor = Setores::findOrFail($id); // Buscar o setor pelo ID
         $setor->delete(); // Deletar o setor do banco de dados
 
