@@ -7,16 +7,13 @@ use App\Models\Setores;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
-class SetorApiController extends Controller
-{
-    public function listarApi()
-    {
+class SetorApiController extends Controller{
+    public function listarApi(){
         $setores = Setores::all();
         return response()->json($setores);
     }
 
-    public function addApi(Request $request)
-    {
+    public function addApi(Request $request){
         try {
             $request->validate([
                 'nome' => 'required|string|max:255',
@@ -49,8 +46,7 @@ class SetorApiController extends Controller
         }
     }
 
-    public function updateApi(Request $request, $id)
-    {
+    public function updateApi(Request $request, $id){
         try {
             $request->validate([
                 'nome' => 'required|string|max:255',
@@ -88,14 +84,26 @@ class SetorApiController extends Controller
         }
     }
 
-    public function deletarApi($id)
-    {
-        $setor = Setores::findOrFail($id); // Buscar o setor pelo ID
-        $setor->delete(); // Deletar o setor do banco de dados
+    public function deletarApi($id){
+        try {
+            $setor = Setores::findOrFail($id); // Buscar o setor pelo ID
+            $setor->delete(); // Deletar o setor do banco de dados
 
-        return response()->json([
-            'message' => "Setor Deletado com Sucesso!",
-            'setor' => $setor
-        ], 200);
+            return response()->json([
+                'message' => "Setor Deletado com Sucesso!",
+                'setor' => $setor
+            ], 200);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Setor não encontrado'
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => "Erro interno do servidor",
+                'errors' => $e->getMessage()
+            ], 500);
+        }
     }
 }
