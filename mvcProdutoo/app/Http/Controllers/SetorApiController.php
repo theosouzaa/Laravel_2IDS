@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Produto;
 use App\Models\Setores;
-
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
 class SetorApiController extends Controller
@@ -14,21 +14,36 @@ class SetorApiController extends Controller
     }
 
     public function addApi(Request $request){
-        $request->validate([
-        'nome' => 'required|string|max:255',
-        'num_corredor' => 'required|integer',
-        // para poder ser nulo ou existir na tabela setores
-    ]);
-        
-    $setor = Setores::create([
-        'nome' => $request->nome,
-        'num_corredor' => $request->num_corredor,
-    ]);
+        try{
+            $request->validate([
+            'nome' => 'required|string|max:255',
+            'num_corredor' => 'required|integer',
+            // para poder ser nulo ou existir na tabela setores
+        ]);
+            
+        $setor = Setores::create([
+            'nome' => $request->nome,
+            'num_corredor' => $request->num_corredor,
+        ]);
 
-        return response()->json([
-            'message' => 'Setor Criado',
-            'setor' => $setor
-        ], 200);
+            return response()->json([
+                'success' => true,
+                'message' => 'Setor Criado',
+                'setor' => $setor
+            ], 201);
+        } catch(\Illuminate\Validation\ValidationException $e){
+            return response()->json([
+                'success' => false,
+                'message' => 'Erro de validação',
+                'erros' => $e->errors()
+            ], 422);
+        } catch(\Exception $e){
+            return response()->json([
+                'success' => false,
+                'message' => "Erro interno do servidor",
+                'errors' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function updateApi(Request $request, $id){
