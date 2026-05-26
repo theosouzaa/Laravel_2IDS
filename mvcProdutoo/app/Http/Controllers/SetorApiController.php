@@ -7,10 +7,36 @@ use App\Models\Setores;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
-class SetorApiController extends Controller{
-    public function listarApi(){
-        $setores = Setores::all();
-        return response()->json($setores);
+class SetorApiController extends Controller
+{
+    public function listarApi(Request $request){
+        try {
+            $query = Setores::query();
+            
+            // Filtro por nome
+            // Select * from setores where nome like %VAR%
+            if ($request->filled('nome')) {
+                $query->where('nome', 'like', '%'.$request->nome . '%');
+            }
+            // Filtros por número do setor
+            if ($request->filled('num_setor')) {
+                $query->where('num_setor', $request->num_setor);
+            }
+
+            $setores = $query->get();
+
+            return response()->json([
+                'succes' => true,
+                'data' => $setores
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => "Erro interno do servidor",
+                'errors' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function addApi(Request $request){
