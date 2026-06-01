@@ -307,7 +307,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($Setores as $setor)
+                        @forelse($setores as $setor)
                             <tr>
                                 <td class="text-center">
                                     <span class="badge-id">#{{ $setor->id }}</span>

@@ -9,11 +9,27 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    public function listar()
-    {
-        $query = Produto::query();
-        $Produtos = $query->get();
-        return view('listar', compact('Produtos'));
+    public function listar(Request $request){
+        try {
+            $query = Setores::query();
+            
+            // Filtro por nome
+            // Select * from setores where nome like %VAR%
+            if ($request->filled('nome')) {
+                $query->where('nome', 'like', '%'.$request->nome . '%');
+            }
+
+            $setores = $query->get();
+
+            return view('listarSetores', compact('setores'));
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => "Erro interno do servidor",
+                'errors' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function add(Request $request)
