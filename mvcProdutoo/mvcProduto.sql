@@ -1,6 +1,10 @@
 CREATE DATABASE produtooLaravel;
 USE produtooLaravel;
 
+
+
+
+
 CREATE TABLE produtos (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
@@ -35,3 +39,8 @@ CREATE TABLE detalheProduto(
 SELECT * FROM detalheProduto;
 SELECT * FROM setores;
 SELECT * FROM produtos;
+SELECT * FROM users;
+
+-- Comando apenas para quando for usar o login --
+ALTER TABLE users
+ADD COLUMN tipo VARCHAR(255) NOT NULL DEFAULT 'usuario';
