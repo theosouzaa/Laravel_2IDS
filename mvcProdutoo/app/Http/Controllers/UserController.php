@@ -43,4 +43,35 @@ class UserController extends Controller
         
         return back()->withErrors(['email' => 'E-mail ou senha inválidos!']);
     }
+
+
+    // Função para trocar senha
+    public function trocarSenha(Request $request){
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        //Busca o usuario que será trocado a senha
+        $usuario = User::where('email', $request->email)->first();
+
+        if (!$usuario) {
+            return back()->withErrors([
+                'email' => 'Usuário não encontrado.'
+            ]);
+        }
+
+        $usuario->password = Hash::make($request->password);
+        $usuario->save();
+
+        return back()->with('success', 'Senha alterada com sucesso!');
+    }
+
+    //Função de logout
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
+    }
 }

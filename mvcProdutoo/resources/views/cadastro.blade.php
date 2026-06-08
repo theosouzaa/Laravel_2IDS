@@ -14,6 +14,13 @@
         <p style="color: green">{{ session('succes') }}</p>
     @endif
 
+    <br>
+        <form action="{{route('logout')}}" method="POST">
+            @csrf
+            <button type="submit">SAIR</button>
+        </form>
+    <br>
+
     <form action="{{ route('produto.salvar') }}" method="POST">
         @csrf
         <label for="nome">Nome produto: </label>
