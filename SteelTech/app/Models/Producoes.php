@@ -16,4 +16,8 @@ class Producoes extends Model
         'preco',
     ];
 
+    public function produto()
+    {
+        return $this->belongsTo(Producoes::class);
+    }
 }
