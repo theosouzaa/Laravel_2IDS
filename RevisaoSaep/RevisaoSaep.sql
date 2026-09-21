@@ -1,6 +1,7 @@
 CREATE DATABASE saep_db;
 USE saep_db;
 
+
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -47,7 +48,7 @@ INSERT INTO usuarios
 (nome, email, senha, created_at, updated_at)
 VALUES
 ('Administrador', 'admin@saep.com', SHA2('123456', 256), NOW(), NOW()),
-('Théo Souza', 'arthurp@saep.com', SHA2('123456', 256), NOW(), NOW()),
+('Théo Souza', 'theoo@saep.com', SHA2('123456', 256), NOW(), NOW()),
 ('Marília Porfirio', 'marilia@saep.com', SHA2('123456', 256), NOW(), NOW());
 
 
